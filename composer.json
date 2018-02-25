@@ -1,0 +1,30 @@
+{
+    "name": "nick-denry/yii2-filter-action-column",
+    "description": "Yii2 Gridview ActionColumn component with custom filter content field",
+    "keywords": ["yii2", "yii2 gridview", "ActionColumn", "Filter content"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/nick-denry/yii2-filter-action-column/issues",
+        "source": "https://github.com/nick-denry/yii2-filter-action-column"
+    },
+    "authors": [
+        {
+            "name": "Nick Denry",
+            "email": "nick.denry@gmail.com",
+            "homepage": "https://github.com/nick-denry/yii2-filter-action-column"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "yiisoft/yii2": ">=2.0.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "nickdenry\\FilterContentActionColumn\\": "src"
+        }
+    },
+}
