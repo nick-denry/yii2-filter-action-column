@@ -5,7 +5,7 @@
  * @author nickdenry.
  */
 
-namespace nickdenry\FilterContentActionColumn;
+namespace nickdenry\grid;
 
 use Yii;
 use yii\helpers\Html;
