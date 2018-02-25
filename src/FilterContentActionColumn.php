@@ -85,7 +85,6 @@ class FilterContentActionColumn extends ActionColumn
                         $title = ucfirst($name);
                 }
 
-
                 $basicOptions = [
                     'title' => $title,
                     'aria-label' => $title,
