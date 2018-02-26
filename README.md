@@ -6,6 +6,12 @@
     <br>
 </p>
 
+Preview
+-------
+![2018-02-26 21 11 07](https://user-images.githubusercontent.com/1450983/36687171-e0f8509c-1b39-11e8-986f-1df0259036cc.png)
+
+
+
 Installation
 ------------
 
