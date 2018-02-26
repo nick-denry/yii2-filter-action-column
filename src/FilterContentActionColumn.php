@@ -49,7 +49,6 @@ class FilterContentActionColumn extends ActionColumn
         $this->initDefaultButton('update', 'pencil', $this->buttonAdditionalOptions['update']);
 
         $this->initDefaultButton('delete', 'trash', ArrayHelper::merge([
-            //'data-confirm' => Yii::t('yii', $this->deleteConfirmText),
             'data-method' => 'post',
         ],
         $this->buttonAdditionalOptions['delete']));
