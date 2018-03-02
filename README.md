@@ -68,24 +68,16 @@ use nickdenry\grid\FilterContentActionColumn;
 ],
 ```
 
-3. Extension styles GridView default buttons with these classes by default
-
-```php
-'view' => ['class' => 'btn btn-default btn-sm'],
-'update' => ['class' => 'btn btn-default btn-sm'],
-'delete' => ['class' => 'btn btn-danger btn-sm'],
-```
-Change this via `buttonAdditionalOptions` property.
+3. Extension provides GridView default buttons class options
 
 ```php
 [
     'class' => FilterContentActionColumn::className(),
     // Set custom classes
     'buttonAdditionalOptions' => [
-        'view' => ['class' => ['btn btn-lg btn-success']],
-        // Or unset
-        'update' => ['class' => []],
-        'delete' => ['class' => []],
+        'view' => ['class' => 'btn btn-lg btn-success'],
+        'update' => ['class' => 'btn btn-default btn-sm'],
+        'delete' => ['class' => 'btn btn-danger btn-sm'],
     ],
     ...
     // Add your own filterContent
@@ -93,7 +85,7 @@ Change this via `buttonAdditionalOptions` property.
 
 ```
 
-or via `buttons` as usual:
+or set `buttons` as usual:
 
 ```php
 'buttons' => [
