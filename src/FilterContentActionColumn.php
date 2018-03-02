@@ -22,9 +22,9 @@ class FilterContentActionColumn extends ActionColumn
     public $filterContent;
 
     public $buttonAdditionalOptions = [
-        'view' => ['class' => 'btn btn-default btn-sm'],
-        'update' => ['class' => 'btn btn-default btn-sm'],
-        'delete' => ['class' => 'btn btn-danger btn-sm'],
+        'view' => ['class' => ''],
+        'update' => ['class' => ''],
+        'delete' => ['class' => ''],
     ];
 
     public $deleteConfirmText = 'Are you sure you want to delete this item?';
