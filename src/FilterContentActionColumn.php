@@ -28,13 +28,13 @@ class FilterContentActionColumn extends ActionColumn
     ];
 
     public $deleteConfirmText = 'Are you sure you want to delete this item?';
+
     /**
      * Renders the filter cell content.
      * The default implementation simply renders a space.
      * This method may be overridden to customize the rendering of the filter cell (if any).
      * @return string the rendering result
      */
-
     protected function renderFilterCellContent()
     {
         return $this->filterContent instanceof \Closure ? call_user_func($this->filterContent) : $this->filterContent;
