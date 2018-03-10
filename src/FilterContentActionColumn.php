@@ -47,7 +47,6 @@ class FilterContentActionColumn extends ActionColumn
     {
         $this->initDefaultButton('view', 'eye-open', $this->buttonAdditionalOptions['view']);
         $this->initDefaultButton('update', 'pencil', $this->buttonAdditionalOptions['update']);
-
         $this->initDefaultButton('delete', 'trash', ArrayHelper::merge([
             'data-method' => 'post',
         ],
@@ -83,13 +82,11 @@ class FilterContentActionColumn extends ActionColumn
                     default:
                         $title = ucfirst($name);
                 }
-
                 $basicOptions = [
                     'title' => $title,
                     'aria-label' => $title,
                     'data-pjax' => '0',
                 ];
-
                 $options = array_merge($basicOptions, $deleteConfirmation, $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
                 return Html::a($icon, $url, $options);
