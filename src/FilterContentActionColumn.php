@@ -2,7 +2,7 @@
 
 /*
  * @file Allow to put some content in gridview filer column.
- * @author nickdenry.
+ * @author Nick Denry
  */
 
 namespace nickdenry\grid;
