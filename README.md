@@ -63,7 +63,7 @@ Usage
                 ]).
             '</div>';
         },
-        /* Another options like: */
+        /* Another actionColumn options */
     ],
     ```
 
@@ -108,9 +108,6 @@ Usage
     3.1. Via DI in your app config
 
     ```php
-    // @see http://www.yiiframework.com/doc-2.0/guide-concept-configurations.html#application-configurations
-    // @see https://stackoverflow.com/a/27210083/5434698
-
     'container' => [
         'definitions' => [
             nickdenry\grid\FilterContentActionColumn::class => [
@@ -127,6 +124,10 @@ Usage
         ],
     ],
     ```
+
+    Additional information:
+    - [Using Yii2 Configurations](http://www.yiiframework.com/doc-2.0/guide-concept-configurations.html#application-configurations)
+    - [Example on stackoverflow](https://stackoverflow.com/a/27210083/5434698)
 
     3.2. If you want to override default button, but keep it's "global" per-application class
 
