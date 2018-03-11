@@ -69,9 +69,9 @@ Usage
 
 2. Additional options per action button
 
-    Extension provides GridView action buttons additional options by names, i.e.
+    Extension provides GridView action buttons additional options by name, i.e.
 
-    set individual class per each button:
+    Set individual class per each button:
 
     ```php
     [
