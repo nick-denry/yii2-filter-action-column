@@ -129,19 +129,21 @@ Usage
     - [Using Yii2 Configurations](http://www.yiiframework.com/doc-2.0/guide-concept-configurations.html#application-configurations)
     - [Example on stackoverflow](https://stackoverflow.com/a/27210083/5434698)
 
-    3.2. If you want to override default button, but keep it's "global" per-application class
+    3.2. If you want to override some default button, but keep it's "global" per-application class attribute
 
     ```php
-    'view' => function($url, $model, $key, $additionalOptions) {
-        return Html::a(
-            Html::tag('span', '', ['class' => "glyphicon glyphicon-eye-open"]),
-            ['some/url'],
-            [
-                'class' => $additionalOptions['class'],
-                'target' => '_blank',
-            ]
-        );
-    },
+    'buttons' => [
+        'view' => function($url, $model, $key, $additionalOptions) {
+            return Html::a(
+                Html::tag('span', '', ['class' => "glyphicon glyphicon-eye-open"]),
+                ['some/url'],
+                [
+                    'class' => $additionalOptions['class'],
+                    'target' => '_blank',
+                ]
+            );
+        },
+    ]
     ```
 
 4. Customize delete confirmation text
