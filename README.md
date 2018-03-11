@@ -37,92 +37,136 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-1. In your GridView view
 
-```php
-use nickdenry\grid\FilterContentActionColumn;
-```
+1. Setup
 
-2. Replace your default `ActionColumn` with
+    1.1. In your GridView view
 
-```php
-[
-    'class' => FilterContentActionColumn::className(),
-    // Add your own filterContent
-    'filterContent' => function()
-    {
-        return '<div class="btn-group"> '.
-            Html::a('<i class="fa fa-search"></i> Search', ['#'], [
-              'class' => 'btn btn-default search-filter', 'title' => 'Find page',
-            ]).
-            Html::a('<i class="fa fa-times"></i>', [''], [
-              'class' => 'btn btn-default reset-search-filter', 'title' => 'Reset filter',
-            ]).
-        '</div>';
-    },
-    'filterOptions' => [
-        'class' => 'action-column'
+    ```php
+    use nickdenry\grid\FilterContentActionColumn;
+    ```
+
+    1.2. Replace your default `ActionColumn` with
+
+    ```php
+    [
+        'class' => FilterContentActionColumn::className(),
+        // Add your own filterContent
+        'filterContent' => function()
+        {
+            return '<div class="btn-group"> '.
+                Html::a('<i class="fa fa-search"></i> Search', ['#'], [
+                  'class' => 'btn btn-default search-filter', 'title' => 'Find page',
+                ]).
+                Html::a('<i class="fa fa-times"></i>', [''], [
+                  'class' => 'btn btn-default reset-search-filter', 'title' => 'Reset filter',
+                ]).
+            '</div>';
+        },
+        /* Another options like: */
     ],
-    'header'=> '',
-    'headerOptions' => ['width' => 150],
-],
-```
+    ```
 
-3. Extension provides GridView default buttons class options
+2. Additional options per action button
 
-```php
-[
-    'class' => FilterContentActionColumn::className(),
-    // Set custom classes
-    'buttonAdditionalOptions' => [
-        'view' => ['class' => 'btn btn-lg btn-success'],
-        'update' => ['class' => 'btn btn-default btn-sm'],
-        'delete' => ['class' => 'btn btn-danger btn-sm'],
+    Extension provides GridView action buttons additional options by names, i.e.
+
+    set individual class per each button:
+
+    ```php
+    [
+        'class' => FilterContentActionColumn::className(),
+        // Set custom classes
+        'buttonAdditionalOptions' => [
+            'view' => ['class' => 'btn btn-lg btn-success'],
+            'update' => ['class' => 'btn btn-default btn-sm'],
+            'delete' => ['class' => 'btn btn-danger btn-sm'],
+        ],
+        ...
+        // Add your own filterContent
     ],
-    ...
-    // Add your own filterContent
-],
+    ```
 
-```
+    or set `buttons` as usual:
 
-or set `buttons` as usual:
+    ```php
+    'buttons' => [
+        'view' => function($url, $model, $key) {
+            return Html::a(
+                Html::tag('span', '', ['class' => "glyphicon glyphicon-eye-open"]),
+                ['some/url'],
+                [
+                    'class' => 'btn btn-default btn-sm', // Here is simple string class
+                    'target' => '_blank',
+            ]);
+        }
+    ],
+    ```
 
-```php
-'buttons' => [
-    'view' => function($url, $model, $key) {
+3. Setup buttons classes per application.
+
+    3.1. Via DI in your app config
+
+    ```php
+    // @see http://www.yiiframework.com/doc-2.0/guide-concept-configurations.html#application-configurations
+    // @see https://stackoverflow.com/a/27210083/5434698
+
+    'container' => [
+        'definitions' => [
+            nickdenry\grid\FilterContentActionColumn::class => [
+                'buttonAdditionalOptions' => [
+                    'view' => ['class' => 'btn btn-default btn-sm'],
+                    'update' => ['class' => 'btn btn-default btn-sm'],
+                    'delete' => ['class' => 'btn btn-danger btn-sm'],
+                    // You could also set your "extra" button class
+                    // like you point it in "template" option
+                    // i.e. 'template' => '{view} {update} {delete} {extra}',
+                    'extra' => ['class' => 'btn btn-success btn-sm'],
+                ],
+            ],
+        ],
+    ],
+    ```
+
+    3.2. If you want to override default button, but keep it's "global" per-application class
+
+    ```php
+    'view' => function($url, $model, $key, $additionalOptions) {
         return Html::a(
             Html::tag('span', '', ['class' => "glyphicon glyphicon-eye-open"]),
             ['some/url'],
             [
-                'class' => 'btn btn-default btn-sm',
+                'class' => $additionalOptions['class'],
                 'target' => '_blank',
-        ]);
-    }
-],
-```
-
-4. Customise delete confirmation text with `deleteConfirmText` property
-
-```php
-[
-    'class' => FilterContentActionColumn::className(),
-    // Confirmation text
-    'deleteConfirmText' => function($model) {
-        return 'Are you sure you want to delete "'.$model->title.'" page?';
+            ]
+        );
     },
-    ...
-    // Add your own filterContent
-],
-```
+    ```
 
-or simply
+4. Customize delete confirmation text
 
-```php
-[
-    'class' => FilterContentActionColumn::className(),
-    // Confirmation text
-    'deleteConfirmText' => 'Custom confirmation',
-    ...
-    // Add your own filterContent
-],
-```
+    via `deleteConfirmText` property
+
+    ```php
+    [
+        'class' => FilterContentActionColumn::className(),
+        // Confirmation text
+        'deleteConfirmText' => function($model) {
+            return 'Are you sure you want to delete "'.$model->title.'" page?';
+        },
+        ...
+        // Add your own filterContent
+    ],
+    ```
+
+    or simply
+
+    ```php
+    [
+        'class' => FilterContentActionColumn::className(),
+        // Confirmation text
+        'deleteConfirmText' => 'Custom confirmation',
+        ...
+        // Add your own filterContent
+    ],
+    ```
