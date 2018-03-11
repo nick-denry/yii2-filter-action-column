@@ -6,6 +6,10 @@
     <br>
 </p>
 
+Provides ActionColumn with filterContent option for yii2 GridView (ActionColumn header button) 
+
+[![Latest Stable Version](https://poser.pugx.org/nick-denry/yii2-filter-action-column/version)](https://packagist.org/packages/nick-denry/yii2-filter-action-column)[![Total Downloads](https://poser.pugx.org/nick-denry/yii2-filter-action-column/downloads)](https://packagist.org/packages/nick-denry/yii2-filter-action-column)[![Latest Unstable Version](https://poser.pugx.org/nick-denry/yii2-filter-action-column/v/unstable)](//packagist.org/packages/nick-denry/yii2-filter-action-column)[![License](https://poser.pugx.org/nick-denry/yii2-filter-action-column/license)](https://packagist.org/packages/nick-denry/yii2-filter-action-column)
+
 Preview
 -------
 With [AdminLTE](https://github.com/dmstr/yii2-adminlte-asset)
