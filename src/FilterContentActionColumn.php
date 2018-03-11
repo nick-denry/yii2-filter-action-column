@@ -30,7 +30,7 @@ class FilterContentActionColumn extends ActionColumn
     public $deleteConfirmText = 'Are you sure you want to delete this item?';
 
     /**
-     * Get button additional options by name
+     * Get button additional options by name.
      * @param string $name Button name as it's written in template
      * @return array button options array
      */
