@@ -15,7 +15,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Render GridView yii\grid\ActionColumn with some content filter cell.
  *
- * @author nickdenry
+ * @author Nick Denry
  */
 class FilterContentActionColumn extends ActionColumn
 {
@@ -28,13 +28,13 @@ class FilterContentActionColumn extends ActionColumn
     ];
 
     public $deleteConfirmText = 'Are you sure you want to delete this item?';
-
     /**
      * Renders the filter cell content.
      * The default implementation simply renders a space.
      * This method may be overridden to customize the rendering of the filter cell (if any).
      * @return string the rendering result
      */
+
     protected function renderFilterCellContent()
     {
         return $this->filterContent instanceof \Closure ? call_user_func($this->filterContent) : $this->filterContent;
@@ -45,12 +45,11 @@ class FilterContentActionColumn extends ActionColumn
      */
     protected function initDefaultButtons()
     {
-        $this->initDefaultButton('view', 'eye-open', $this->buttonAdditionalOptions['view']);
-        $this->initDefaultButton('update', 'pencil', $this->buttonAdditionalOptions['update']);
-        $this->initDefaultButton('delete', 'trash', ArrayHelper::merge([
+        $this->initDefaultButton('view', 'eye-open');
+        $this->initDefaultButton('update', 'pencil');
+        $this->initDefaultButton('delete', 'trash', [
             'data-method' => 'post',
-        ],
-        $this->buttonAdditionalOptions['delete']));
+        ]);
     }
 
     /**
@@ -87,10 +86,44 @@ class FilterContentActionColumn extends ActionColumn
                     'aria-label' => $title,
                     'data-pjax' => '0',
                 ];
+                $additionalOptions = ArrayHelper::merge($additionalOptions, $this->getButtonAdditionalOptions($name));
                 $options = array_merge($basicOptions, $deleteConfirmation, $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
                 return Html::a($icon, $url, $options);
             };
         }
+    }
+
+    /**
+     * Get button additional options by name
+     * @param string $name Button name as it's written in template
+     * @return array button options array
+     */
+    protected function getButtonAdditionalOptions($name)
+    {
+        return isset($this->buttonAdditionalOptions[$name]) ? $this->buttonAdditionalOptions[$name] : [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function renderDataCellContent($model, $key, $index)
+    {
+        return preg_replace_callback('/\\{([\w\-\/]+)\\}/', function ($matches) use ($model, $key, $index) {
+            $name = $matches[1];
+            if (isset($this->visibleButtons[$name])) {
+                $isVisible = $this->visibleButtons[$name] instanceof \Closure
+                    ? call_user_func($this->visibleButtons[$name], $model, $key, $index)
+                    : $this->visibleButtons[$name];
+            } else {
+                $isVisible = true;
+            }
+            if ($isVisible && isset($this->buttons[$name])) {
+                $url = $this->createUrl($name, $model, $key, $index);
+                $additionalOptions = $this->getButtonAdditionalOptions($name);
+                return call_user_func($this->buttons[$name], $url, $model, $key, $additionalOptions);
+            }
+            return '';
+        }, $this->template);
     }
 }
