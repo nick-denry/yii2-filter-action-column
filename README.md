@@ -106,6 +106,9 @@ Usage
     ],
     ```
 
+Extra settings
+-----
+
 3. Setup buttons classes per application.
 
     3.1. Via DI in your app config
