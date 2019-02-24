@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * @file Allow to put some content in gridview filer column.
  * @author Nick Denry
  */
